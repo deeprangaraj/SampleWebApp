@@ -40,7 +40,6 @@
 		    <version>9.0.58</version>
 		    <scope>provided</scope>
 		</dependency>
-		
 	</dependencies>
 
 	<build>
