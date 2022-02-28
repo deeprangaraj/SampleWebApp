@@ -14,9 +14,9 @@ WORKDIR /opt/tomcat
 RUN curl -O https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.58/bin/apache-tomcat-9.0.58.tar.gz
 RUN tar xvf apache*.tar.gz
 RUN mv apache-tomcat-9.0.58/* /opt/tomcat/.
-COPY /my-mvn-project/Docker/custom-users.xml /opt/tomcat/conf/tomcat-users.xml
-COPY /my-mvn-project/Docker/custom-context.xml /opt/tomcat/webapps/manager/META-INF/context.xml
-COPY /my-mvn-project/target/SampleWebApp.war /opt/tomcat/webapps
+COPY ./custom-users.xml /opt/tomcat/conf/tomcat-users.xml
+COPY ./custom-context.xml /opt/tomcat/webapps/manager/META-INF/context.xml
+COPY ./SampleWebApp.war /opt/tomcat/webapps
 
 EXPOSE 8080
 
