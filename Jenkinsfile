@@ -11,12 +11,23 @@ pipeline {
             }
         }
 
-        stage ('Build') {
-
+        stage ('compile') {
             steps {
-                withMaven(maven : 'maven_3_11_0') {
-                    sh 'mvn init'
-                }
+                // use the id of the globally configured maven instance
+                def mvnTool = tool 'Maven_3_6_3'
+
+                // execute maven
+                sh "${mvnTool}/bin/mvn clean compile"
+            }
+        }
+
+        stage ('install') {
+            steps {
+                // use the id of the globally configured maven instance
+                def mvnTool = tool 'Maven_3_6_3'
+             
+                // execute maven
+                sh "${mvnTool}/bin/mvn clean install"
             }
         }
 
