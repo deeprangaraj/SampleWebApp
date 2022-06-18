@@ -13,13 +13,12 @@ pipeline {
         }
 
         stage ('install') {
-            // use the id of the globally configured maven instance
-            def mvnTool = tool 'Maven_3_6_3'
             steps {
-             
-                // execute maven
-                sh "${mvnTool}/bin/mvn clean install"
+                // use the id of the globally configured maven instance
+                def mvnTool = tool 'Maven_3_6_3'
             }
+            // execute maven
+            sh "${mvnTool}/bin/mvn clean install"
         }
 
     }
