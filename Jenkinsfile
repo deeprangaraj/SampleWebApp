@@ -21,13 +21,14 @@ pipeline {
         //      sh "${mvnTool}/bin/mvn clean install"
         //    }
         //}
-
-        steps ('compile')
-        {
+        stage ('compile') {
+            steps 
+            {
                 withMaven(maven : 'maven_3_6_3') {
                     sh 'mvn clean compile'
                 }
-        }
+            }
 
+        }
     }
 }
