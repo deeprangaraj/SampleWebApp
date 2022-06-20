@@ -16,6 +16,18 @@ pipeline {
            }
         }
 
+        stage ('maven version') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
+
+        stage('maven compile') {
+            steps {
+                sh 'mvn clean compile'
+            }
+        }
+
         //stage ('install') {
         //    steps {
         //      // use the id of the globally configured maven instance
@@ -33,16 +45,5 @@ pipeline {
         //    }
         //}
 
-        stage ('maven version') {
-            steps {
-                sh 'mvn --version'
-            }
-        }
-
-        stage('maven compile') {
-            steps {
-                sh 'mvn clean compile'
-            }
-        }
     }
 }
