@@ -2,7 +2,7 @@ pipeline {
     
     agent any
     tools {
-       maven: '3.8.1'
+       maven: '3.8.6'
     }
  
     stages {
@@ -24,15 +24,25 @@ pipeline {
         //      sh "${mvnTool}/bin/mvn clean install"
         //    }
         //}
-        stage ('compile') {
-            steps 
-            {
+        //stage ('compile') {
+        //    steps 
+        //    {
         //        withMaven(maven : 'maven_3_6_3') {
         //        }
+        //        sh 'mvn clean compile'
+        //    }
+        //}
+
+        stage ('maven version') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
+
+        stage('maven compile') {
+            steps {
                 sh 'mvn clean compile'
             }
-
         }
-        
     }
 }
