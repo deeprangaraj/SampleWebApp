@@ -1,7 +1,10 @@
 pipeline {
     
     agent any
-
+    tools {
+       maven: '3.8.1'
+    }
+ 
     stages {
 
         stage('Checkout external proj') {
@@ -24,11 +27,12 @@ pipeline {
         stage ('compile') {
             steps 
             {
-                withMaven(maven : 'maven_3_6_3') {
-                    sh 'mvn clean compile'
-                }
+        //        withMaven(maven : 'maven_3_6_3') {
+        //        }
+                sh 'mvn clean compile'
             }
 
         }
+        
     }
 }
