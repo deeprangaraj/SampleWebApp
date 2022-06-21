@@ -1,6 +1,7 @@
 pipeline {
     
-    agent any
+    agent 'java-docker-agent'
+
     tools {
        maven '3.8.6'
     }
