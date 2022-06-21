@@ -44,7 +44,7 @@ pipeline {
 
         stage ('Run sample test to verify webpage is working') {
             steps {
-                sh 'curl localhost:8080/SampleWebApp/welcome | grep "Deepa's First Sample Web Application"'
+                sh 'curl localhost:8080/SampleWebApp/welcome | grep "Deepa\'s First Sample Web Application"'
             }   
         }
 
