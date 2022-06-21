@@ -32,11 +32,30 @@ pipeline {
         stage('docker build') {
 
            steps {
+               sh 'docker build -t deepapraj/sample-app:2.0 .'
+           }
+        }
 
-               sh 'docker build -t deeprangaraj/sample-app:1.0 .'
+        stage('Push Docker Image') {
 
+           withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+
+              sh "docker login -u deepapraj -p ${dockerHubPwd}"
            }
 
+           sh 'docker push deepapraj/sample-app:2.0'
         }
+
+        #stage('Run Container on Dev Server') {
+
+        #    def dockerRun = 'docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app:2.0'
+
+        #    sshagent(['dev-server']) {
+
+        #        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.18.198 ${dockerRun}"
+            
+        #    }
+        #}
+
     }
 }
