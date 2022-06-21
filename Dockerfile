@@ -16,7 +16,7 @@ RUN tar xvf apache*.tar.gz
 RUN mv apache-tomcat-9.0.58/* /opt/tomcat/.
 #COPY ./custom-users.xml /opt/tomcat/conf/tomcat-users.xml
 #COPY ./custom-context.xml /opt/tomcat/webapps/manager/META-INF/context.xml
-COPY ./SampleWebApp.war /opt/tomcat/webapps
+COPY ./target/SampleWebApp.war /opt/tomcat/webapps
 
 EXPOSE 8080
 
