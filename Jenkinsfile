@@ -48,9 +48,9 @@ pipeline {
 
         stage('Run Container on Dev Server') {
             steps {
-                def dockerRun = 'docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app:2.1'
+                //def dockerRun = 'docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app:2.1'
                 sshagent(['10ec48ef-db38-4a68-880f-6822037272ad']) {
-                    sh "ssh -o StrictHostKeyChecking=no jenkins@172.31.26.9 ${dockerRun}"
+                    sh 'ssh -o StrictHostKeyChecking=no jenkins@172.31.26.9 "docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app:2.1" '
                 }
             }
         }
