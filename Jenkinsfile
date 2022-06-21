@@ -38,12 +38,12 @@ pipeline {
 
         stage('Push Docker Image') {
 
-           withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
-
-              sh "docker login -u deepapraj -p ${dockerHubPwd}"
-           }
-
-           sh 'docker push deepapraj/sample-app:2.0'
+            steps {
+                withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
+                   sh "docker login -u deepapraj -p ${dockerHubPwd}"
+                }
+                sh 'docker push deepapraj/sample-app:2.0'
+            }
         }
 
         //stage('Run Container on Dev Server') {
