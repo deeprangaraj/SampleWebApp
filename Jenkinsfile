@@ -32,8 +32,20 @@ pipeline {
         stage('docker build') {
 
            steps {
-               sh 'docker build -t deepapraj/sample-app:2.2 .'
+               sh 'docker build -t deepapraj/sample-app:2.3 .'
            }
+        }
+        
+        stage('Run Container on Dev Server') {
+            steps {
+                sh 'docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app:2.3'
+            }
+        }
+
+        stage ('Run sample test to verify webpage is working') {
+            steps {
+                sh 'curl localhost:8080/SampleWebApp/welcome | grep "Deepa's First Sample Web Application"'
+            }   
         }
 
         stage('Push Docker Image') {
@@ -42,18 +54,9 @@ pipeline {
                 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
                    sh "docker login -u deepapraj -p ${dockerHubPwd}"
                 }
-                sh 'docker push deepapraj/sample-app:2.2'
+                sh 'docker push deepapraj/sample-app:2.3'
             }
         }
 
-        stage('Run Container on Dev Server') {
-            steps {
-                //def dockerRun = 'docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app:2.2'
-                //sshagent(['10ec48ef-db38-4a68-880f-6822037272ad']) {
-                //    sh 'ssh -o StrictHostKeyChecking=no jenkins@172.31.26.9 "docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app:2.2" '
-                //}
-                sh 'docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app:2.2'
-            }
-        }
     }
 }
