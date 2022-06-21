@@ -32,13 +32,13 @@ pipeline {
         stage('docker build') {
 
            steps {
-               sh 'docker build -t deepapraj/sample-app:2.4 .'
+               sh 'docker build -t deepapraj/sample-app .'
            }
         }
         
         stage('Run Container on Dev Server') {
             steps {
-                sh 'docker run -p 8080:8080 -d --name sample-app-2.4 deepapraj/sample-app:2.4'
+                sh 'docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app'
             }
         }
 
@@ -54,7 +54,15 @@ pipeline {
                 withCredentials([string(credentialsId: 'docker-pwd', variable: 'dockerHubPwd')]) {
                    sh "docker login -u deepapraj -p ${dockerHubPwd}"
                 }
-                sh 'docker push deepapraj/sample-app:2.4'
+                sh 'docker push deepapraj/sample-app'
+            }
+        }
+
+        stage('remove container stack')
+        {
+            steps {
+                sh 'docker kill sample-app' 
+                sh 'docker remove image deepapraj/sample-app --force'
             }
         }
 
