@@ -38,12 +38,13 @@ pipeline {
         
         stage('Run Container on Dev Server') {
             steps {
-                sh 'docker run -p 8080:8080 -d --name sample-web-app-1 deepapraj/sample-app'
+                sh 'docker run -p 8080:8080 -d --name sample-web-app-2 deepapraj/sample-app'
             }
         }
 
         stage ('Run sample test to verify webpage is working') {
             steps {
+                sh 'sleep 10'
                 sh 'curl localhost:8080/SampleWebApp/welcome | grep "Deepa\'s First Sample Web Application"'
             }   
         }
