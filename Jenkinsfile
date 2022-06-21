@@ -30,6 +30,7 @@ pipeline {
         }
 
         stage('docker build') {
+
            steps {
 
                sh 'docker build -t deeprangaraj/sample-app:1.0 .'
