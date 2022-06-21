@@ -38,7 +38,7 @@ pipeline {
         
         stage('Run Container on Dev Server') {
             steps {
-                sh 'docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app'
+                sh 'docker run -p 8080:8080 -d --name sample-web-app deepapraj/sample-app'
             }
         }
 
@@ -61,7 +61,7 @@ pipeline {
         stage('remove container stack')
         {
             steps {
-                sh 'docker kill sample-app' 
+                sh 'docker kill sample-web-app' 
                 sh 'docker remove image deepapraj/sample-app --force'
             }
         }
