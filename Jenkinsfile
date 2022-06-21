@@ -1,6 +1,6 @@
 pipeline {
     
-    agent { label 'java-docker-agent' }
+    agent { label 'jenkins-worker' }
 
     tools {
        maven '3.8.6'
