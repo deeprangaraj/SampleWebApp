@@ -46,16 +46,16 @@ pipeline {
            sh 'docker push deepapraj/sample-app:2.0'
         }
 
-        #stage('Run Container on Dev Server') {
+        //stage('Run Container on Dev Server') {
 
-        #    def dockerRun = 'docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app:2.0'
+        //    def dockerRun = 'docker run -p 8080:8080 -d --name sample-app deepapraj/sample-app:2.0'
 
-        #    sshagent(['dev-server']) {
+        //    sshagent(['dev-server']) {
 
-        #        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.18.198 ${dockerRun}"
+        //        sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.18.198 ${dockerRun}"
             
-        #    }
-        #}
+        //    }
+        //}
 
     }
 }
