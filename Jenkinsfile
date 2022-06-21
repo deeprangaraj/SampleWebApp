@@ -28,22 +28,14 @@ pipeline {
             }
         }
 
-        //stage ('install') {
-        //    steps {
-        //      // use the id of the globally configured maven instance
-        //      def mvnTool = tool 'Maven_3_6_3'
-        //      // execute maven
-        //      sh "${mvnTool}/bin/mvn clean install"
-        //    }
-        //}
-        //stage ('compile') {
-        //    steps 
-        //    {
-        //        withMaven(maven : 'maven_3_6_3') {
-        //        }
-        //        sh 'mvn clean compile'
-        //    }
-        //}
+        stage('docker build') {
+           steps {
+
+               sh 'docker build -t deeprangaraj/sample-app:1.0 .'
+
+           }
+
+        }
 
     }
 }
